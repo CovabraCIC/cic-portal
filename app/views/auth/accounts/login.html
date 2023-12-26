@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% block head %}
+<title>Página de Login</title>
+{% endblock %}
+{% block body %}
+<div class="container mt-5 col-2">
+  <small id="auxiliar" class="form-text text-muted">Este será o formulário de login.</small>
+  <form method="POST" action="{{ url_for('auth.login') }}">
+    {{ form.hidden_tag() }}
+    <label for="login-email">E-mail</label>
+    {{ form.email() }}
+    <br>
+    <label for="login-password">Senha</label>
+    {{ form.password() }}
+    <label class="form-check-label" for="login-lembrar">Lembre-se de mim</label>
+    {{ form.submit() }}
+    <a href="#">Esqueci minha senha.</a>
+  </form>
+</div>
+{% endblock %}

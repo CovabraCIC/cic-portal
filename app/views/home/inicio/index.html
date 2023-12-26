@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% include 'inc/header.html' %}
+{% include 'inc/sidebar.html' %}
+
+{% block body %}
+
+<a href="{{ url_for('auth.logout') }}">Logout</a>
+
+{% endblock %}
+
+
+{% include 'inc/footer.html' %}
