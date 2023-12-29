@@ -8,6 +8,7 @@ from flask_admin.contrib.sqla import ModelView
 # Flask Config
 from config import DevelopmentConfig
 # Models
+from app.models.role_user import roles_users
 from app.models.role import Role
 from app.models.user import User
 # App Objects

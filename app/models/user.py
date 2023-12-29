@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
-    # roles = db.relationship('Role', secondary="roles_users", backref=db.backref('users', lazy='dynamic'))
+    roles = db.relationship('Role', secondary="roles_users", backref=db.backref('users', lazy='dynamic'))
 
     def __str__(self):
         return self.email
@@ -34,7 +34,7 @@ class User(db.Model, UserMixin):
     def verify_existing(self, **primary_keys:dict) -> bool:
         """Retorna True se a consulta existir."""
         existing_item = db.session.query(self.__class__).filter_by(**primary_keys).first()
-        return existing_item is None
+        return existing_item is not None
 
     def __repr__(self):
         return '<User %r>' % self.first_name
