@@ -28,9 +28,10 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
+            print("Usuário logado com sucesso.")
             return redirect(url_for('auth.home'))
         else:
-            ...
+            print("O usuário não pôde ser logado.")
     return render_template('auth/accounts/login.html', form=form)
 
 

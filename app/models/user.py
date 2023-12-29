@@ -8,15 +8,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
-    roles = db.relationship('Role', secondary="roles_users",
-                            backref=db.backref('users', lazy='dynamic'))
+    # roles = db.relationship('Role', secondary="roles_users", backref=db.backref('users', lazy='dynamic'))
 
     def __str__(self):
         return self.email
 
 
-    def __init__(self, name, email, password, active):
-        self.name = name
+    def __init__(self, first_name, last_name, email, password, active):
+        self.first_name = first_name
+        self.last_name = last_name
         self.password = password
         self.email = email
         self.active = active
@@ -31,13 +31,13 @@ class User(db.Model, UserMixin):
         db.session.commit()
         return True
 
-    def verify_existing(self, session, **primary_keys:dict) -> bool:
+    def verify_existing(self, **primary_keys:dict) -> bool:
         """Retorna True se a consulta existir."""
-        existing_item = session.query(self.__class__).filter_by(**primary_keys).first()
+        existing_item = db.session.query(self.__class__).filter_by(**primary_keys).first()
         return existing_item is None
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return '<User %r>' % self.first_name
     
     def __str__(self):
-        return self.name
+        return self.first_name

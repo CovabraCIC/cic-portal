@@ -16,9 +16,9 @@ class Role(db.Model):
         db.session.commit()
         return True
 
-    def verify_existing(self, session, **primary_keys:dict) -> bool:
+    def verify_existing(self, **primary_keys:dict) -> bool:
         """Retorna True se a consulta existir."""
-        existing_item = session.query(self.__class__).filter_by(**primary_keys).first()
+        existing_item = db.session.query(self.__class__).filter_by(**primary_keys).first()
         return existing_item is None
 
     def __repr__(self):
