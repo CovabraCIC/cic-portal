@@ -5,6 +5,7 @@ from flask import current_app
 from flask_login import current_user
 # App Objects
 from app import db, bcrypt
+from app.utils import flash_form_errors
 # App Models
 from app.models.user import User
 from app.models.role import Role
@@ -30,19 +31,16 @@ def register():
                 db.session.add(user)
                 user.roles.append(default_role)
                 db.session.commit()
-                print("Usuário registrado com sucesso.")
                 flash("Usuário registrado com sucesso.", "success")
                 return redirect(url_for('auth.login'))
             except Exception as e:
                 db.session.rollback()
-                print(e)
-                flash("Tente novamente, erro no banco de dados", "error")
+                flash("Tente novamente, erro no banco de dados", "warning")
                 return render_template('auth/accounts/register.html', form=form)
         else:
             flash("Inconsistência no ato do registro, verifique os dados.", "danger")
+
     else:
-        for field, errors in form.errors.items():
-            for error in errors:
-                flash(f'{form[field].label.text}: {error}', 'info')
+        flash_form_errors(form)
 
     return render_template('auth/accounts/register.html', form=form)
