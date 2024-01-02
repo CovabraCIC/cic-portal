@@ -7,5 +7,8 @@ class UserRoles(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False, default=1)
 
-    user = db.relationship('User', backref=db.backref('user_role', cascade='all, delete-orphan'))
-    role = db.relationship('Role', backref=db.backref('user_role', cascade='all, delete-orphan'))
+    users = db.relationship('User', back_populates='roles')
+    roles = db.relationship('Role', back_populates='users')
+
+    def __str__(self):
+        return self.roles.name

@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
+    roles = db.relationship('UserRoles', back_populates='users')
 
     def __str__(self):
         return self.email
@@ -32,9 +33,10 @@ class User(db.Model, UserMixin):
         db.session.commit()
         return True
 
-    def verify_existing(self, **primary_keys:dict) -> bool:
+    @classmethod
+    def verify_existing(cls, **primary_keys:dict) -> bool:
         """Retorna True se a consulta existir."""
-        existing_item = db.session.query(self.__class__).filter_by(**primary_keys).first()
+        existing_item = db.session.query(cls).filter_by(**primary_keys).first()
         return existing_item is not None
 
     def __repr__(self):

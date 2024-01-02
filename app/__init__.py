@@ -22,8 +22,8 @@ admin = Admin(name="Controle CIC", template_mode="bootstrap3")
 
 # Config Extensions
 class UserView(ModelView):
-    column_hide_backrefs = False
-    column_list = ('email', 'active', 'roles')
+    column_list = ['id', 'first_name', 'roles']
+    form_excluded_columns = ['roles']
 
 admin.add_view(UserView(User, db.session))
 admin.add_view(ModelView(Role, db.session))

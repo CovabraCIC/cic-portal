@@ -19,7 +19,8 @@ def register():
         email = form.data['email']
         hashed_password = bcrypt.generate_password_hash(form.data['password']).decode('utf-8')
 
-        if not user.verify_existing(email=email):
+        
+        if not User.verify_existing(email=email):
             try:
                 user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, active=True)
                 db.session.add(user)
