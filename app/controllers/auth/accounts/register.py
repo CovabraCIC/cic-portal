@@ -5,6 +5,7 @@ from flask import render_template, redirect, url_for, flash, request
 # App
 from app import db, bcrypt
 from app.utils import flash_form_errors
+from app.models.user_role import UserRoles
 from app.models.user import User
 from app.models.role import Role
 
@@ -13,18 +14,18 @@ def register():
     form = RegistrationForm()
 
     if request.method == 'POST' and form.validate():
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        email = form.email.data
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-
-        user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, active=True)
-        default_role = Role.query.filter_by(name='user').first()
+        first_name = form.data['first_name']
+        last_name = form.data['last_name']
+        email = form.data['email']
+        hashed_password = bcrypt.generate_password_hash(form.data['password']).decode('utf-8')
 
         if not user.verify_existing(email=email):
             try:
+                user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, active=True)
                 db.session.add(user)
-                user.roles.append(default_role)
+                db.session.flush() # Importante para que o ID do usuário seja coletado.
+                user_roles = UserRoles(user_id=user.id)
+                db.session.add(user_roles)
                 db.session.commit()
                 flash("Usuário registrado com sucesso.", "success")
                 return redirect(url_for('auth.login'))

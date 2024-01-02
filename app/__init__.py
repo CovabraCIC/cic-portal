@@ -8,7 +8,7 @@ from flask_admin.contrib.sqla import ModelView
 # Flask Config
 from config import DevelopmentConfig
 # Models
-from app.models.role_user import roles_users
+from app.models.user_role import UserRoles
 from app.models.role import Role
 from app.models.user import User
 # App Objects
@@ -21,7 +21,11 @@ bcrypt = Bcrypt()
 admin = Admin(name="Controle CIC", template_mode="bootstrap3")
 
 # Config Extensions
-admin.add_view(ModelView(User, db.session))
+class UserView(ModelView):
+    column_hide_backrefs = False
+    column_list = ('email', 'active', 'roles')
+
+admin.add_view(UserView(User, db.session))
 admin.add_view(ModelView(Role, db.session))
 
 def create_app():

@@ -2,13 +2,14 @@ from database import db
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'user'
+
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
-    roles = db.relationship('Role', secondary="roles_users", backref=db.backref('users', lazy='dynamic'))
 
     def __str__(self):
         return self.email

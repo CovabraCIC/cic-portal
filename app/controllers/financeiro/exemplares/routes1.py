@@ -14,7 +14,7 @@ from app.controllers.auth.roles.protector import role_required
 
 
 @bp.route('/rota1', methods=['GET', 'POST'])
-@role_required(["user"])
+@role_required(["fiscal", "god"])
 @login_required
 def lista_produtos():
     # regra de negocio
