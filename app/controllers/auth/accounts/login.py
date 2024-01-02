@@ -1,6 +1,6 @@
 # Flask
 from flask import render_template, redirect, url_for
-from flask import current_app
+from flask import current_app, flash
 # Flask Extensions
 from flask_login import login_user, login_required, logout_user, current_user
 # App Objects
@@ -28,10 +28,10 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            print("Usuário logado com sucesso.")
+            flash("Usuário logado com sucesso.", "success")
             return redirect(url_for('auth.home'))
         else:
-            print("O usuário não pôde ser logado.")
+            flash("Inconsistencia no ato do login.", "danger")
     return render_template('auth/accounts/login.html', form=form)
 
 
@@ -40,10 +40,11 @@ def login():
 def logout():
     """Encerra a sessão do usuário autenticado, gerando um cookie armazenado no navegador do cliente."""
     logout_user() 
-    return "You are now logged out"
+    return redirect(url_for('auth.login'))
+
 
 @bp.route("/home")
 @login_required
 def home():
     """Página de exemplo com login requerido para demonstração."""
-    return "The current user is %s" % current_user
+    return render_template('home/inicio/index.html', current_user=current_user)

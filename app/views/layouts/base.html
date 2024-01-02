@@ -14,7 +14,12 @@
 
 <body>
   {% include 'inc/flash-messages.html' %} <!-- Mensagens Flash -->
-  {% block body %}{% endblock %}
+  {% include 'inc/header.html' %}
+  {% include 'inc/sidebar.html' %}
+  {% include 'inc/footer.html' %}
+  
+  {% block body %}
+  {% endblock %}
 
   <!-- Você pode adicionar mais JavaScript customizado ao final, caso queira. -->
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>

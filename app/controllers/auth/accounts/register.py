@@ -1,17 +1,12 @@
+from . import bp
+from .forms import RegistrationForm
 # Flask
 from flask import render_template, redirect, url_for, flash, request
-from flask import current_app
-# Flask Extensions
-from flask_login import current_user
-# App Objects
+# App
 from app import db, bcrypt
 from app.utils import flash_form_errors
-# App Models
 from app.models.user import User
 from app.models.role import Role
-# Forms and Routes, others
-from .forms import RegistrationForm
-from . import bp
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -39,8 +34,6 @@ def register():
                 return render_template('auth/accounts/register.html', form=form)
         else:
             flash("Inconsistência no ato do registro, verifique os dados.", "danger")
-
     else:
         flash_form_errors(form)
-
     return render_template('auth/accounts/register.html', form=form)

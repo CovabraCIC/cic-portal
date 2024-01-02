@@ -25,11 +25,7 @@ admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Role, db.session))
 
 def create_app():
-    app = Flask(__name__,
-                template_folder="views",
-                static_folder="public"
-                )
-    
+    app = Flask(__name__, template_folder="views", static_folder="public")
     app.config.from_object(DevelopmentConfig)
     
     # Import blueprints
@@ -44,7 +40,12 @@ def create_app():
     app.register_blueprint(errors_bp)
     app.register_blueprint(financeiro_bp)
 
-    # # DB / Extensions
+    # Extensions Config
+    login_manager.login_view = "auth.login"
+    login_manager.login_message = "Você precisa estar logado para visualizar essa página."
+    login_manager.login_message_category = "warning"
+
+    # Extensions Init
     db.init_app(app=app)
     login_manager.init_app(app=app)
     bcrypt.init_app(app=app)

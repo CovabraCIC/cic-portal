@@ -10,8 +10,11 @@ from app.models.products import Product
 from . import bp
 from sqlalchemy import text
 
+from app.controllers.auth.roles.protector import role_required
+
 
 @bp.route('/rota1', methods=['GET', 'POST'])
+@role_required(["user"])
 @login_required
 def lista_produtos():
     # regra de negocio
