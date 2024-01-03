@@ -30,7 +30,6 @@ def login():
             flash("Inconsistencia no ato do login.", "danger")
     return render_template('auth/accounts/login.html', form=form)
 
-
 @bp.route("/logout")
 @login_required
 def logout():
