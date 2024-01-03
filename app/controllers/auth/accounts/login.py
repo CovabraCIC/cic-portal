@@ -1,18 +1,14 @@
-# Flask
-from flask import render_template, redirect, url_for
-from flask import current_app, flash
-# Flask Extensions
-from flask_login import login_user, login_required, logout_user, current_user
-# App Objects
-from app import login_manager, bcrypt
-# App Models
-from app.models.user import User
-# Forms and Routes, others
-from .forms import LoginForm
 from . import bp
+from flask import render_template, redirect, url_for, flash, current_app
+from flask_login import login_user, login_required, logout_user, current_user
+from .forms import LoginForm
+from app import login_manager, bcrypt
+from app.models.user import User
 
 
-login_manager.login_view = 'auth.login' # Redirecionar usuários não autenticados para esta rota.
+login_manager.login_view = "auth.login"
+login_manager.login_message = "Você precisa estar logado para visualizar essa página."
+login_manager.login_message_category = "warning"
 
 @login_manager.user_loader
 def load_user(user_id):

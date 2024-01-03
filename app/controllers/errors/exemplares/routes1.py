@@ -1,7 +1,5 @@
-# Flask
-from flask import render_template
-# Forms and Routes, others
 from . import bp
+from flask import render_template
 
 
 # 404 Page not found error default handler

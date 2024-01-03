@@ -1,18 +1,13 @@
-# Flask Home
 from flask import Flask
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_admin import Admin
-# Flask Basement
 from flask_admin.contrib.sqla import ModelView
-# Flask Config
+from database import db
 from config import DevelopmentConfig
-# Models
 from app.models.user_role import UserRoles
 from app.models.role import Role
 from app.models.user import User
-# App Objects
-from database import db
 
 
 # Extensions
@@ -43,11 +38,6 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(errors_bp)
     app.register_blueprint(financeiro_bp)
-
-    # Extensions Config
-    login_manager.login_view = "auth.login"
-    login_manager.login_message = "Você precisa estar logado para visualizar essa página."
-    login_manager.login_message_category = "warning"
 
     # Extensions Init
     db.init_app(app=app)

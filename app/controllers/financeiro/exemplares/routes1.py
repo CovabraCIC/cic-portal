@@ -1,20 +1,14 @@
-# Flask
-from flask import render_template
-# Flask Extensions
-from flask_login import login_required
-# App Objects
-from app import db
-# App Models
-from app.models.products import Product
-# Forms and Routes, others
 from . import bp
-from sqlalchemy import text
-
+from flask import render_template
+from flask_login import login_required
+from app import db
+from app.models.products import Product
 from app.controllers.auth.roles.protector import role_required
+from sqlalchemy import text
 
 
 @bp.route('/rota1', methods=['GET', 'POST'])
-@role_required(["fiscal", "god"])
+@role_required(["fiscal", "user"])
 @login_required
 def lista_produtos():
     # regra de negocio

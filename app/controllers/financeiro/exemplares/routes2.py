@@ -1,11 +1,7 @@
-# Flask
-from flask import render_template
-# App Objects
-from app import db
-# App Models
-from app.models.user import User
-# Forms and Routes, others
 from . import bp
+from flask import render_template
+from app import db
+from app.models.user import User
 
 
 @bp.route('/rota2', methods=['GET', 'POST'])

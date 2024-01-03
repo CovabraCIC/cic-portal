@@ -1,5 +1,5 @@
 from database import db
-"""Example users model"""
+
 
 class Product(db.Model):
     __tablename__ = 'products'
