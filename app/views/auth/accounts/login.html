@@ -4,15 +4,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="wrapper">
-  <div class="container main">
+<div class="container main">
     <div class="row">
       <div class="col-6 p-0 m-0 side-image">
         <!-------------      image     ------------->
         <img src="{{ url_for('static', filename='images/auth/covabra-logo.png') }}" alt="">
-        <div class="text">
-          <p><strong>Portal Covabra</strong></p>
-        </div>
+        <!-- <div class="text"> -->
+          <!-- <p><strong>Portal Covabra</strong></p> -->
+        <!-- </div> -->
       </div>
       <div class="col-md-6 right">
 
@@ -33,15 +32,15 @@
             {{ form.submit(class_="submit", value="Entrar") }}
           </div>
         </form>
-          <div class="forgot">
-            <span>Esqueceu sua <a href="#">senha</a>?</span>
+          <div class="auth-text">
+            <span>Esqueceu sua <a href="{{ url_for('auth.forgot') }}">senha</a>?</span>
           </div>
-          <div class="signin">
+          <div class="auth-text">
             <span>Ainda não tem uma conta? <a href="{{ url_for('auth.register') }}">Registre-se</a></span>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
+
 {% endblock %}

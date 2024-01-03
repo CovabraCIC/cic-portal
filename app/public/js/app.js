@@ -1,10 +1,7 @@
-// Flash Messages
-document.addEventListener('DOMContentLoaded', function () {
-    var flashes = document.querySelectorAll('.flash-message');
+// app.js
 
-    flashes.forEach(function (flash) {
-        setTimeout(function () {
-            flash.classList.add('hidden');
-        }, 5000);
-    });
+$(document).ready(function () {
+    var flashContainer = $('#flash-messages');
+    flashContainer.fadeIn(500).delay(3000).fadeOut(500);
 });
+    

@@ -28,6 +28,7 @@ def login():
             return redirect(url_for('auth.home'))
         else:
             flash("Inconsistencia no ato do login.", "danger")
+    flash("Flash de Visualização.", "danger")
     return render_template('auth/accounts/login.html', form=form)
 
 @bp.route("/logout")

@@ -7,6 +7,10 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[validators.DataRequired()])
     submit = SubmitField()
 
+class ForgotForm(FlaskForm):
+    email = EmailField(validators=[validators.DataRequired()])
+    submit = SubmitField()
+
 class RegistrationForm(FlaskForm):
     first_name = StringField(validators=[validators.DataRequired()])
     last_name = StringField(validators=[validators.DataRequired()])

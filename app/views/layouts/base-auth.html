@@ -6,17 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- jQuery -->
   {% block head %}{% endblock %}
 </head>
 
 <body>
-  {% include 'inc/flash-messages.html' %} <!-- Mensagens Flash -->
   
-  {% block body %}
-  {% endblock %}
+  <div class="wrapper">
 
-  <!-- Você pode adicionar mais JavaScript customizado ao final, caso queira. -->
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% include 'inc/flash-messages.html' %}
+    {% block body %}
+    {% endblock %}
+  </div>
+
 </body>
+
+<!-- Você pode adicionar mais JavaScript customizado ao final, caso queira. -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
 </html>

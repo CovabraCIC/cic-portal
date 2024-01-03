@@ -3,16 +3,3 @@
     padding: 0;
     margin: 0;
 }
-
-.flash-message {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 15px;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-.flash-message.hidden {
-    opacity: 0;
-}
