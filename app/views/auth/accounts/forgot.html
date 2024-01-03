@@ -1,10 +1,11 @@
 {% extends 'layouts/base-auth.html' %}
 {% block head %}
-<title>Login</title>
+<title>Recuperação de Senha</title>
 {% endblock %}
 
 {% block body %}
-<div class="container main">
+<div class="wrapper">
+  <div class="container main">
     <div class="row">
       <div class="col-6 p-0 m-0 side-image">
         <!-------------      image     ------------->
@@ -17,7 +18,10 @@
 
         <div class="input-box">
 
-          <header>Área de Acesso</header>
+          <header>Área de Recuperação</header>
+          <div class="auth-text">
+            <span>Por favor, forneça o endereço de e-mail associado à sua conta. O <strong>time do CIC</strong> enviará a você um Token de Recuperação.</span>
+          </div>
           <form method="POST" action="{{ url_for('auth.login') }}">
           {{ form.hidden_tag() }}
           <div class="input-field">
@@ -25,22 +29,14 @@
             <label for="email">E-mail</label>
           </div>
           <div class="input-field">
-            {{ form.password(class_="input", id_="pass", required_="") }}
-            <label for="pass">Senha</label>
-          </div>
-          <div class="input-field">
-            {{ form.submit(class_="submit", value="Entrar") }}
-          </div>
-        </form>
-          <div class="auth-text">
-            <span>Esqueceu sua <a href="{{ url_for('auth.forgot') }}">senha</a>?</span>
+            {{ form.submit(class_="submit", value="Validar") }}
           </div>
           <div class="auth-text">
-            <span>Ainda não tem uma conta? <a href="{{ url_for('auth.register') }}">Registre-se</a></span>
+            <span>Já tem uma conta? <a href="{{ url_for('auth.login') }}">Entre</a></span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
-
 {% endblock %}

@@ -1,30 +1,56 @@
 {% extends 'layouts/base-auth.html' %}
 {% block head %}
-<title>Página de Registro</title>
+<title>Registro</title>
 {% endblock %}
-{% block body %}
-<div class="container mt-5 col-2">
-  <form method="POST" action="{{ url_for('auth.register') }}">
-    {{ form.hidden_tag() }}
-    <label for="first_name">First Name:</label>
-    {{ form.first_name() }}
-    <br>
-    <label for="last_name">Last Name:</label>
-    {{ form.last_name() }}
-    <br>
-    <label for="email">E-mail:</label>
-    {{ form.email() }}
-    <br>
-    <label for="password">Password:</label>
-    {{ form.password() }}
-    <br>
-    <label for="confirm_password">Confirmar Senha:</label>
-    {{ form.confirm_password() }}
-    <br>
-    {{ form.submit() }}
-  </form>
-  <hr>
-  <a href="#">Login into existing account!</a>
-</div>
 
+{% block body %}
+<div class="wrapper">
+  <div class="container main">
+    <div class="row">
+      <div class="col-6 p-0 m-0 side-image">
+        <!-------------      image     ------------->
+        <img src="{{ url_for('static', filename='images/auth/covabra-logo.png') }}" alt="">
+        <!-- <div class="text"> -->
+          <!-- <p><strong>Portal Covabra</strong></p> -->
+        <!-- </div> -->
+      </div>
+      <div class="col-md-6 right">
+
+        <div class="input-box">
+
+          <header>Área de Registro</header>
+          <form method="POST" action="{{ url_for('auth.register') }}">
+          {{ form.hidden_tag() }}
+          <div class="input-field">
+            {{ form.first_name(class_="input", id_="first_name", required_="", autocomplete_="off") }}
+            <label for="first_name">Nome</label>
+          </div>
+          <div class="input-field">
+            {{ form.last_name(class_="input", id_="last_name", required_="", autocomplete_="off") }}
+            <label for="last_name">Sobrenome</label>
+          </div>
+          <div class="input-field">
+            {{ form.email(class_="input", id_="email", required_="", autocomplete_="off") }}
+            <label for="email">E-mail</label>
+          </div>
+          <div class="input-field">
+            {{ form.password(class_="input", id_="pass", required_="") }}
+            <label for="pass">Senha</label>
+          </div>
+          <div class="input-field">
+            {{ form.confirm_password(class_="input", id_="pass", required_="") }}
+            <label for="pass">Confirmação de Senha</label>
+          </div>
+          <div class="input-field">
+            {{ form.submit(class_="submit", value="Registrar") }}
+          </div>
+          <div class="auth-text">
+            <span>Já tem uma conta? <a href="{{ url_for('auth.login') }}">Entre</a></span>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
