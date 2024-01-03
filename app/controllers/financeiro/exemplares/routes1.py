@@ -8,8 +8,8 @@ from sqlalchemy import text
 
 
 @bp.route('/rota1', methods=['GET', 'POST'])
-@role_required(["fiscal", "user"])
 @login_required
+@role_required(["fiscal", "user"])
 def lista_produtos():
     # regra de negocio
     # query = text("SELECT * FROM products")

@@ -21,14 +21,13 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(email=form.data["email"]).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             flash("Usuário logado com sucesso.", "success")
             return redirect(url_for('auth.home'))
         else:
             flash("Inconsistencia no ato do login.", "danger")
-    flash("Flash de Visualização.", "danger")
     return render_template('auth/accounts/login.html', form=form)
 
 @bp.route("/logout")
