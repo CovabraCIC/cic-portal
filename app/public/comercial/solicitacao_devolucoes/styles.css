@@ -1,0 +1,163 @@
+/* Botões */
+.btn {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #fff;
+    background-color: #606060; /* Cor de fundo para o tema escuro */
+    border-color: #606060;
+}
+
+.solicitacoes-devolucoes {
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 85%;
+    border-radius: 5px;
+    padding: 3;
+    background-color: #eeeeee;
+}
+
+.dataTables_wrapper{
+    overflow-x:auto;
+    background-color: #eeeeee;
+}
+
+div .header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    /* justify-content:right; */
+}
+
+a#nova-solicitacao {
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
+a#voltar {
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
+
+/* Formulários */
+.form-control {
+    background-color: #e2e2e2;
+    color: #3d3d3d;
+    width: 85%;
+    padding-right: 20px;
+}
+
+h2#title-form{
+    margin-bottom: 0;
+}
+
+.form_subtitle{
+    font-size: medium;
+    color:#606060;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+}
+
+.row1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.row1 .input-field {
+    width: 100%;
+}
+
+table.dataTable tbody td {
+    padding: 2px;
+    font-size: small;
+}
+
+
+@media (max-width: 1000px) {
+
+    .form-control {
+        width: 90%;
+    }
+    
+    .row1 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .row1 .input-field {
+        width: 100%;
+    }
+}
+
+.input_product{
+    display: flex;
+    flex-direction: row;
+}
+
+#idproduto {
+    margin-right: 10px;
+}
+
+.textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px 20px;
+    border: none;
+    /* box-sizing: border-box; */
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
+.select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+  }
+
+.numeric {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+  }
+
+
+/* Modal*/
+section.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000080;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.modal_body{
+    background-color: #eeeeee;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}

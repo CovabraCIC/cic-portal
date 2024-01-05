@@ -1,0 +1,51 @@
+<section class="modal" id="modal" style="display: none;">
+    <div class="modal_body">
+        <div class="pt-1 w-600px">
+            <div class="modal_header">
+                <h1>Buscar Produtos</h1>
+    
+                <div class="row" style="align-items: center;">
+                    <div class="col-sm-4">
+                        <select id="fild-find" class="form-select" aria-label="Default select example">
+                            <option value="1">Id Produto</option>
+                            <option value="3">Código Barras</option>
+                            <option value="2">Descrição</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <input id="value-find" class="form-control" type="text" placeholder="Default input">
+                    </div>
+                    <div class="col-sm-1" style="align-items: left;" >
+                        <button type="button" class="btn btn-info" onclick="findToLabels()">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+    
+            <div id="radioProdutos" class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-hover table-bordered table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">id Produto</th>
+                        <th scope="col">Código Barras</th>
+                        <th scope="col">Descricao Produto</th>
+                      </tr>
+                    </thead>
+                    <tbody id="body-table">
+                    </tbody>
+                  </table>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 m-2">
+                    <button type="button" class="btn btn-info" onclick="defineProduct()">Escolher</button>
+                </div>
+                <div class="col-sm-2 m-2">
+                    <button type="button" class="btn btn-danger" onclick="closeForm()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,95 @@
+{% extends "layouts/base.html" %}
+
+{% block head %}
+  <title>Solicitações de Devoluções</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" >
+  <link rel="stylesheet" href="{{ url_for('static', filename='comercial/solicitacao_devolucoes/styles.css') }}">  
+{% endblock %}
+
+{% block body %}
+    <div class="solicitacoes-devolucoes content">
+      <div class="header">
+        <h2>Solicitações de Devolução</h2>
+        <a id="nova-solicitacao" type="button" class="btn btn-primary" href="{{ url_for('comercial.formulario_solicitacao', id=0 ) }}">
+          Nova Solicitação de Devolução
+        </a>
+      </div>
+    <div class="content-table mx-auto">
+      <table id="solicitacoes_teble" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Loja</th>
+                <th>Setor</th>
+                <th>Produto</th>
+                <th>Qtde</th>
+                <th>Tipo Solicitação</th>
+                <th>Data Solicitação</th>
+                <th>Descrição Status</th>
+                <th>Data Alteração</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for solicitacao in solicitacoes %}
+            <tr>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCd.idestabelecimento }}</td>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCdProduto.setorproduto }}</td>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCd.idproduto }} - {{ solicitacao.SolicitacaoDevolucaoCdProduto.descricaoproduto }}</td>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCd.quantidade }}</td>
+                <td>{{ solicitacao.TipoSolicitacaoDevolucaoCd.tipo }}</td>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCd.datahoracriacao.strftime('%Y-%m-%d') }}</td>
+                <td>{{ solicitacao.StatusSolicitacaoDevolucaoCd.descricao }}</td>
+                <td>{{ solicitacao.SolicitacaoDevolucaoCd.datahoraalteracao.strftime('%Y-%m-%d') if solicitacao.SolicitacaoDevolucaoCd.datahoraalteracao != None else "" }}</td>
+                <td>
+                  {% if solicitacao.SolicitacaoDevolucaoCd.idstatussolicitacaodevolucaocd==1 %}
+                    <a href="{{ url_for('comercial.formulario_solicitacao', id=solicitacao.SolicitacaoDevolucaoCd.id ) }}" class="card-link col-sm-2">Editar</a>
+                  {% endif %}
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <br><br>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+  new DataTable('#solicitacoes_teble', {
+    initComplete: function () {
+        this.api()
+            .columns()
+            .every(function () {
+              let column = this;
+                            
+                // Create select element
+                let select = document.createElement('select');
+                select.add(new Option(''));
+                column.footer().replaceChildren(select);
+ 
+                // Apply listener for user change in value
+                select.addEventListener('change', function () {
+                    var val = DataTable.util.escapeRegex(select.value);
+ 
+                    column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                });
+ 
+                // Add list of options
+                column
+                    .data()
+                    .unique()
+                    .sort()
+                    .each(function (d, j) {
+                        select.add(new Option(d));
+                    });
+            });
+    }
+});
+
+</script> 
+{% endblock %}

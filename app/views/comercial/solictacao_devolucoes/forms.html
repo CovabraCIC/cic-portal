@@ -1,0 +1,69 @@
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <title>Solicitações de Devoluções</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='comercial/solicitacao_devolucoes/styles.css') }}">   
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="conteiner mx-auto">
+            <form method="POST" action="" class="form-control pt-1">
+                <div class="header">
+                    
+                    <div>
+                        <h2 id="title-form">{{ form_title }}</h2>
+                        {% if form_subtitle != None %}
+                            <p class="form_subtitle">{{ form_subtitle }}</p>
+                        {% endif %}
+                    </div>
+                    <a id="voltar" type="button" class="btn btn-primary" href="{{ url_for('comercial.solicitacoes_devolucoes' ) }}">
+                        Voltar
+                    </a>
+                </div>
+                {{ form.hidden_tag() }}    
+                <div class="row1">
+                    <div class="input-field" id="estab">
+                        <label for="estabelecimento">Loja</label>
+                        {{ form.estabelecimento(class_="input select", id_="estabelecimento") }}
+                    </div>
+                    <div class="input-field" id="prod">
+                        <label for="idproduto">ID Produto</label>
+                        <div class="input_product">
+                            {{ form.idproduto(class_="input numeric", id_="idproduto", required_="",) }}
+                            <button id="buscar-produto" type="button" class="btn btn-primary" onclick="showForm()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label for="quantidade">Quantidade</label>
+                        {{ form.quantidade(class_="input numeric", id_="quantidade", required_="", autocomplete_="off") }}
+                    </div>
+                </div> 
+                <div class="input-field">
+                    <label for="tipodevolucao">Tipo de Devolução</label>
+                    {{ form.tipodevolucao(class_="input select", id_="tipodevolucao") }}
+                </div>
+                <div class="input-field">
+                    <label for="observacoes">Observações</label>
+                    {{ form.observacoes(class_="input textarea", id_="observacoes") }}
+                </div>
+                <div class="submit">
+                    {{ form.enviar(class="submit btn btn-primary") }}
+                </div>
+            </form> 
+        </div>
+    </div>
+
+    <br>
+    <br>
+    
+{% include "comercial/solictacao_devolucoes/includes/modal.html" %}
+
+{% endblock %}
+
+{% block script %}
+<script> var lista_produtos = JSON.parse('{{ lista_produtos|tojson|safe }}') </script>
+<script src="{{ url_for('static', filename='comercial/solicitacao_devolucoes/modal_find_products.js') }}"></script>
+{% endblock %}
