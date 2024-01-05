@@ -124,8 +124,8 @@
             <img src="{{ url_for('static', filename='images/auth/user-images/profile/usuario-god.jpg') }}" alt="profileImg">
           </div>
           <div class="name-job">
-            <div class="profile_name">Username</div>
-            <div class="job">Web Desginer</div>
+            <div class="profile_name">{{ current_user }}</div>
+            <div class="job">990576</div>
           </div>
           <a href="{{ url_for('auth.logout') }}"><i class='bx bx-log-out'></i></a>
         </div>
@@ -133,12 +133,16 @@
     </ul>
   </div>
   <section class="home-section">
-    <div class="home-content bg-primary">
+    <div class="home-content bg-success">
       <i class='bx bx-menu'></i>
       <span class="text">Home</span>
     </div>
-    <h1>teste</h1>
-    <p>lorem ipsum</p>
+    
+    <div class="container">
+      {% block body %}
+      {% endblock %}
+    </div>
+
     {% include 'inc/flash-messages.html' %} <!-- Mensagens Flash -->
   </section>
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
