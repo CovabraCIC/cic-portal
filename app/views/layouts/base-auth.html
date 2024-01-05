@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{{ url_for('static', filename='icons/favicon/covabra.png') }}" type="image/x-icon"/>
-  <!-- Estilos -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/inc.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/auth/auth.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inc/flash-messages.css') }}"> <!-- Mensagens Flash -->
+  <link rel="icon" href="{{ url_for('static', filename='icons/favicon/covabra.png') }}" type="image/x-icon"/>
   {% block head %}{% endblock %}
 </head>
-
 <body>
-  <div class="wrapper">
-    {% include 'inc/flash-messages.html' %} <!-- Mensagens Flash -->
-    {% block body %}{% endblock %}
-  </div>
+  {% block content %}{% endblock %}
+  {% include 'inc/flash-messages.html' %} <!-- Mensagens Flash -->
 </body>
-
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script> <!-- JS da Aplicação -->
-<script src="{{ url_for('static', filename='js/inc.js') }}"></script> <!-- JS de Inclusão -->
-
+<script src="{{ url_for('static', filename='js/inc/flash-messages.js') }}"></script> <!-- Mensagens Flash -->
 </html>

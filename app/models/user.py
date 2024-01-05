@@ -44,4 +44,4 @@ class User(db.Model, UserMixin):
         return '<User %r>' % self.first_name
     
     def __str__(self):
-        return self.first_name
+        return self.first_name + ' ' + self.last_name

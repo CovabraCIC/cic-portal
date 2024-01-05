@@ -1,55 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            padding-top: 20px;
-        }
-
-        .sidebar a {
-            padding: 8px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #818181;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            color: #f1f1f1;
-        }
-
-        .content {
-            margin-left: 200px;
-            padding: 16px;
-        }
-    </style>
-</head>
-<body>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inc/sidebar.css') }}">
+{% endblock %}
 
 <div class="sidebar">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="{{ url_for('comercial.solicitacoes_devolucoes') }}">Solicitações de Devolução</a>
+    <ul>
+        <li class="logo">
+            <a href="">
+                <span class="icon"><ion-icon name="invert-mode-outline"></ion-icon></span>
+                <span class="text">CIC</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                <span class="text">Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                <span class="text">Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('comercial.solicitacoes_devolucoes') }}">
+                <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
+                <span class="text">Solicitações de Devolução</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                <span class="text">Novidades</span>
+            </a>
+        </li>
+        <div class="bottom">
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <div class="imgBx">
+                            <img src="{{ url_for('static', filename='images/auth/user-images/profile/usuario-god.jpg') }}" alt="">
+                        </div>
+                    </span>
+                    <span class="text">victor gomes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('auth.logout') }}">
+                    <span class="icon"><ion-icon name="arrow-back-outline"></ion-icon></span>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </div>
+    </ul>
 </div>
-
-<div class="content">
-    <!-- Conteúdo da sua página vai aqui -->
-</div>
-
-</body>
-</html>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
