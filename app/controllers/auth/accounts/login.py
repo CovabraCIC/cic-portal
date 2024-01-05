@@ -29,6 +29,11 @@ def login():
             return redirect(url_for('home.home'))
         else:
             flash("Inconsistência no ato do login.", "danger")
+    flash("fuck", "danger")
+    flash("fuck", "danger")
+    flash("fuck", "danger")
+    flash("fuck", "danger")
+    flash("fuck", "danger")
     return render_template('auth/accounts/login.html', form=form)
 
 @bp.route("/logout")
