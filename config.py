@@ -24,6 +24,7 @@ class Config(object):
     FLASK_ADMIN_SWATCH = 'Darkly' # https://bootswatch.com/3/
 
 class DevelopmentConfig(Config):
+    # SQLALCHEMY_DATABASE_URI = "postgresql://{user}:{password}@{host}:{port}/{database}?{options}".format(**DB_CIC) # Default
     DEVELOPMENT = True
     DEBUG = True
 

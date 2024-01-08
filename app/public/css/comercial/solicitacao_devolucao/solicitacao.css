@@ -9,8 +9,8 @@
 
 .solicitacoes-devolucoes {
     margin-top: 10px;
-    margin-right: 20px;
-    width: 85%;
+    padding: 10px;
+    width: 100%;
     border-radius: 5px;
     padding: 3;
     background-color: #eeeeee;
@@ -24,7 +24,7 @@
 div .header{
     display: flex;
     flex-direction: row;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     /* justify-content:right; */
 }
 
@@ -36,6 +36,7 @@ a#nova-solicitacao {
 a#voltar {
     margin-left: auto;
     margin-bottom: auto;
+    margin-right: 10px;
 }
 
 
@@ -43,8 +44,9 @@ a#voltar {
 .form-control {
     background-color: #e2e2e2;
     color: #3d3d3d;
-    width: 85%;
-    padding-right: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
 }
 
 h2#title-form{
@@ -76,6 +78,10 @@ h2#title-form{
 table.dataTable tbody td {
     padding: 2px;
     font-size: small;
+}
+
+div.submit{
+    margin-left: 10px;
 }
 
 

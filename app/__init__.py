@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from database import db
-from config import ProductionConfig
+from config import DevelopmentConfig
 from app.models.user_role import UserRoles
 from app.models.role import Role
 from app.models.user import User
@@ -25,7 +25,7 @@ admin.add_view(ModelView(Role, db.session))
 
 def create_app():
     app = Flask(__name__, template_folder="views", static_folder="public")
-    app.config.from_object(ProductionConfig)
+    app.config.from_object(DevelopmentConfig)
     
     # Import blueprints
     from .controllers.home.inicial import bp as home_bp
